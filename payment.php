@@ -1,4 +1,12 @@
 <?php
+                        session_start();
+
+                        // Periksa apakah pengguna belum login
+                        if (!isset($_SESSION['username'])) {
+                            // Redirect ke halaman login atau tindakan lain yang sesuai
+                            header("Location: index.php");
+                            exit();
+                        }
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
@@ -14,8 +22,15 @@ $jumlahPenumpang = $_POST['jumlahPenumpang'];
 $status = $_POST['status'];
 $kodeBus = $_POST['kodeBus'];
 
+if ($status == 'Umum') {
+    $total_bayar = $jumlahPenumpang * 3500;
+    
+} else if($status == 'Mahasiswa'){
+    $total_bayar = $jumlahPenumpang * 1500;
+
+}
+
 // Hitung total bayar
-$total_bayar = $jumlahPenumpang * 5000;
 // Proses form saat tombol "pay" ditekan
 if (isset($_POST['pay'])) {
     // Tangkap data dari form
@@ -27,7 +42,11 @@ if (isset($_POST['pay'])) {
     $kodeBus = $_POST['kodeBus'];
 
     // Hitung total bayar
-    $total_bayar = $jumlahPenumpang * 5000;
+    if ($status == 'Umum') {
+        $total_bayar = $jumlahPenumpang * 3500;
+    } else if ($status == 'Mahasiswa') {
+        $total_bayar = $jumlahPenumpang * 1500;
+    }
 
     // Query untuk menyimpan data pemesanan ke database
     $q = "INSERT INTO tb_pemesanan (kode_bus, koridor_bus, awal_halte, tujuan_akhir, jumlah_penumpang, status, total_pembayaran, bukti_pembayaran)
@@ -103,7 +122,7 @@ if (isset($_POST['pay'])) {
                                 <div class="payment-summary-divider"></div>
                                 <div class="payment-summary-item payment-summary-total">
                                     <div class="payment-summary-name">Total</div>
-                                    <div class="payment-summary-price">Rp.<?= $total_bayar; ?></div>
+                                    <div class="payment-summary-price">Rp.<?=  number_format($total_bayar, 2, ',', '.'); ?></div>
                                 </div>
                             </div>
                         </div>
@@ -143,6 +162,10 @@ if (isset($_POST['pay'])) {
                         <input type="hidden" name="status" value="<?= $status ?>">
                         <input type="hidden" name="kodeBus" value="<?= $kodeBus ?>">
                         <button type="submit" class="payment-form-submit-button" name="pay">
+                            
+                        <?php
+echo "<script>alert('Pembayaran Selesai tersimpan')</script>";
+?>
                             <i class="ri-wallet-line"></i> Pay
                         </button>
                     </form>

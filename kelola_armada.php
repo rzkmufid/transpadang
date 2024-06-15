@@ -1,4 +1,12 @@
 <?php
+session_start();
+
+// Periksa apakah pengguna belum login
+if (!isset($_SESSION['username'])) {
+    // Redirect ke halaman login atau tindakan lain yang sesuai
+    header("Location: index.php");
+    exit();
+}
 require 'koneksi.php';
 $conn = mysqli_connect('localhost', 'root', '', 'db_transpadang');
 
@@ -141,22 +149,24 @@ if (isset($_POST['armada'])) {
                             <label for="from">Awal Halte</label>
                             <br>
                             <input style="width: 1000px;" name="awalHalte" type="text" id="from" list="asal_halte" autocomplete="off" placeholder="Asal Halte">
-                            <datalist id="asal_halte">
-                                <option value="Pasaraya">Pasar Raya</option>
-                                <option value="Lubeg">Lubuk Begalung</option>
-                            </datalist>
+                           
                             <br>
                             <label for="to">Tujuan Akhir</label>
                             <br>
                             <input style="width: 1000px;" name="tujuanAkhir" type="text" id="to" list="tujuan_halte" autocomplete="off" placeholder="Tujuan Halte">
-                            <datalist id="tujuan_halte">
-                                <option value="Pasaraya">Pasar Raya</option>
-                                <option value="Lubeg">Lubuk Begalung</option>
-                            </datalist>
+                        
                             <br>
                             <label for="koridor">Koridor Bus</label>
                             <br>
                             <input style="width: 1000px;" name="koridorBus" type="text" id="koridor" list="koridor_bus" autocomplete="off" placeholder="Koridor Bus">
+                            <datalist id="koridor_bus">
+                                <option value="K6">Koridor 6</option>
+                                <option value="K5">Koridor 5</option>
+                                <option value="K4">Koridor 4</option>
+                                <option value="K3">Koridor 3</option>
+                                <option value="K2">Koridor 2</option>
+                                <option value="K1">Koridor 1</option>
+                            </datalist>
                             <br>
                             <label for="jam">Jam Operasi</label>
                             <br>

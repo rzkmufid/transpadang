@@ -363,27 +363,25 @@ while ($row = mysqli_fetch_assoc($bus_query)) {
             <div class="title">
                 <h3>Info Tiket</h3>
             </div>
+            <br><br><br><br><br><br><br><br><br><br>
             <div class="content">
+                <center>
                 <ul class="service-list">
                     <li>
-                        <i class='bx bxs-shield'></i>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Id saepe similique optio quam eum
-                            atque repellat ex quaerat suscipit rerum.</p>
+                    <i class='bx bx-purchase-tag'><a>Dewasa</a></i>
+                        <p>Harga Tiket : Rp 3.500,00</p>
                     </li>
                     <li>
-                        <i class='bx bxs-ambulance'></i>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Id saepe similique optio quam eum
-                            atque repellat ex quaerat suscipit rerum.</p>
+                    <i class='bx bx-purchase-tag'><a>Mahasiswa</a></i>
+                        <p>Harga Tiket : Rp 1.500,00</p>
                     </li>
-                    <li>
-                        <i class='bx bx-health'></i>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Id saepe similique optio quam eum
-                            atque repellat ex quaerat suscipit rerum.</p>
-                    </li>
+                  
                 </ul>
             </div>
+            </center>
         </div>
     </section>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
     <!-- info tiket -->
 
     <!-- BLOGS -->

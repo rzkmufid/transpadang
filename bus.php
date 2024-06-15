@@ -1,5 +1,14 @@
 <?php
 
+                            session_start();
+
+                            // Periksa apakah pengguna belum login
+                            if (!isset($_SESSION['username'])) {
+                                // Redirect ke halaman login atau tindakan lain yang sesuai
+                                header("Location: index.php");
+                                exit();
+                            }
+
 $conn = mysqli_connect('localhost', 'root', '', 'db_transpadang');
 $result = mysqli_query($conn, "SELECT * FROM tb_bus");
 

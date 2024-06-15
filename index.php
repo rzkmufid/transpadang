@@ -1,4 +1,17 @@
 <?php
+session_start();
+
+// Periksa apakah pengguna belum login
+if (isset($_SESSION['username'])) {
+    // Redirect ke halaman login atau tindakan lain yang sesuai
+    if ($_SESSION['username']=='user') {
+        header("Location: beranda_user.php");
+        exit();
+    } if ($_SESSION['username'] == 'admin') {
+        header("Location: beranda_admin.php");
+        exit();
+    }
+}
 require 'koneksi.php';
 $conn = mysqli_connect('localhost', 'root', '', 'db_transpadang');
 
@@ -56,7 +69,7 @@ if (isset($_POST['regis'])) {
                     <input type="password" name="password" />
                 </label>
                 <p class="forgot-pass">Forgot password?</p>
-                <button type="submit" class="submit" name="signin"><a class="text-signin" href="#">Sign In</a></button>
+                <button type="submit" class="submit" name="signin">Sign In</button>
                 <button type="button" class="fb-btn">Connect with <span>Google</span></button>
             </div>
         </form>
